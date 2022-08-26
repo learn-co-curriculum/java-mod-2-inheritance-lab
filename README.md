@@ -6,45 +6,73 @@
 
 ## Instructions
 
-Using an example from your daily life (that doesn't have to do with animals),
-design your own class hierarchy that has 1 base class and at least 2 subclasses.
-As you design this structure, keep the following in mind:
+In this lab, we are going to create another hierarchy using inheritance! We
+will create a sport hierarchy where `Sport` will be the parent class and
+`Football` and `Baseball` will be the child classes:
 
-- These are simplified examples, so all class actions can simply print out what
-  they're doing without worrying about actually implementing behavior
-- Your class hierarchy should make sense - for example, having a base class of
-  `Car` that has a `fly()` method would not make sense
-- Have a "Runner" class that instantiates your classes and calls your actions -
-  this is a good way to make sure your output makes sense
+![Sport Inheritance](https://curriculum-content.s3.amazonaws.com/java-mod-2/inheritance-lab/Sport-Inheritance.png)
 
-Here an example "Runner" class for the sample classes we introduced in this
-section:
+When creating these classes, follow these rules:
+
+- Every sport should have teammates.
+- Every sport can be played.
+- A football team should have 45 teammates.
+- A baseball team should have 26 teammates.
+- There are 4 quarters in football.
+- If we are up to bat in baseball, we should change a variable to say so
+  and print "Hey batter, batter, swing!"
+- If we are not up to bat in baseball, we should change a variable to say so
+  and print "Out in the field!"
+- If a touchdown is scored in football, print to the console "Yay! Touchdown!"
+- If a home run is hit in baseball, print to the console "Yay! Home run!"
+- If we play football, we should say we are playing football.
+- If we play baseball, we should say we are playing baseball.
+
+Each of the classes have been created for us in the `com.flatiron.sport`
+package. It is your job to write the classes correctly based on the given rules
+and use the `SportDriver` class to run and test your code.
+
+The `SportDriver` class has the following code:
 
 ```java
-public class AnimalRunner {
-    public static void main(String[] args) {
-        System.out.println("Running my animal examples");
-        Animal baseAnimal = new Animal();
-        baseAnimal.takeBreath();
-        Cat myCat = new Cat();
-        myCat.takeBreath();
-        myCat.useLitter();
-        Parrot myParrot = new Parrot();
-        myParrot.takeBreath();
-        myParrot.startFlying();
-        myParrot.stopFlying();
-    }
+package com.flatiron.sport;
+
+public class SportDriver {
+
+  public static void main(String[] args) {
+    Sport mySport = new Sport();
+    Football footballTeam = new Football();
+    Baseball baseballTeam = new Baseball();
+
+    System.out.println("mySport has " + mySport.getTeammates() + "  teammates.");
+    mySport.play();
+
+    footballTeam.play();
+    System.out.println("The footballTeam has " + footballTeam.getTeammates() + " teammates.");
+    System.out.println("There are " + footballTeam.getQuarters + "  quarters in football.");
+    footballTeam.touchdown();
+
+    baseballTeam.play();
+    System.out.println("The baseballTeam has " + baseballTeam.getTeammates() + " teammates.");
+    baseballTeam.upToBat();
+    baseballTeam.homeRun();
+    baseballTeam.outToField();
+  }
 }
 ```
 
-Running this class will give you the following output:
+Running this driver class will give you the following output:
 
 ```plaintext
-Running my animal examples
-I took a breath
-I took a breath
-I just used the litter - I'm a clean cat!
-I took a breath
-I'm flying - weeee!!!
-Coming down for a landing!
+mySport has 0 teammates.
+I'm playing a sport!
+I'm playing football!
+The footballTeam has 45 teammates.
+There are 4 quarters in football.
+Yay! Touchdown!
+I'm playing baseball!
+The baseballTeam has 26 teammates.
+Hey batter, batter, swing!
+Yay! Home run!
+Out in the field!
 ```
